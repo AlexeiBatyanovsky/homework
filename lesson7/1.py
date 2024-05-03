@@ -1,17 +1,15 @@
-sr_bal = 0
-bal = int
-sum = 0
-n = 0
+av_mark, sum, n = 0, 0, 0
+mark = int
 
-while bal != 0:
+while mark != 0:
     n = n + 1
-    bal = int(input('Введите оценку: '))
-    if bal != 0:
-        sum = sum + bal
-        sr_bal = sum/(n)
-        #print(n, bal, sr_bal, sum)
+    mark = int(input('Enter mark: '))
+    if mark != 0:
+        sum = sum + mark
+        av_mark = sum/(n)
+        #print(n, mark, av_mark, sum)
     else:
         continue
 
 else:
-    print('средний балл: ', sr_bal)
+    print('Average mark: ', av_mark)
