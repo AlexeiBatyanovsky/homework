@@ -11,6 +11,7 @@ while bal != 0:
         sr_bal = sum/(n)
         print(n, bal, sr_bal, sum)
     else:
-        break
+        continue
+
 else:
     print('средний балл: ', sr_bal)
