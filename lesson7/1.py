@@ -9,7 +9,7 @@ while bal != 0:
     if bal != 0:
         sum = sum + bal
         sr_bal = sum/(n)
-        print(n, bal, sr_bal, sum)
+        #print(n, bal, sr_bal, sum)
     else:
         continue
 
