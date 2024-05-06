@@ -1,8 +1,5 @@
-list1 = list(map(int, input(('Enter a number: '))))
-sum = 0
-for i in range(len(list1)):
-    square = list1[i] ** 2
-    sum = sum + square
-    #print(square)
-    #print(sum)
-print(sum)
+s = 0
+num = input('Enter a number: ')
+for n in num:
+    s += int(n)**2
+print(s)
