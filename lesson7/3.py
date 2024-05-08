@@ -1,13 +1,11 @@
-latin = "abcdefghijklmnopqrstuvwxyz"
+# Запросить любое число. Заменить каждую цифру этого числа буквой, 
+# у которой номер в алфавите равен этой цифре. 
+# Например: 1352=aceb.
+
+latin = " abcdefghijkl"
 text = input("Введите строку: ")
-print(text)
-i = 0
-s = ""
-for a in text:
-    if "0" <= a <= "9":
-        s += a
-        continue
-    elif s != "":
-        text = text.replace(s, latin[int(s)-1])
-    s = ""
-print(text)
+str1 = ''
+
+for i in text:
+   str1 += latin[int(i)]
+print(str1)
