@@ -28,3 +28,13 @@
 # --------10
 # ----11
 # 12
+
+def line_print(l:list, d=0, sep='--'):
+    for item in l:
+        if type(item) is list:
+            line_print(item, d+1)
+        else:
+            print(sep * d + str(item))
+            
+some_list=[1,[2,[[3],4]],5,[[[6,7]]],8,[[[[9,10]],11]],12]            
+line_print(some_list)

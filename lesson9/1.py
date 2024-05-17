@@ -9,5 +9,5 @@ def printn(str1):
     n += 1
     if str1:
         print(n, str1)
-        printn(str1)
+        #printn(str1)
 printn(str1)

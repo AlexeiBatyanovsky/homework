@@ -11,10 +11,8 @@ countries = {
     "Germany": ["Berlin", "Hamburg", "Munich"],
 }
 
-city = input()
-for country, cities in countries.items():
-    if city in cities:
-        print(f'INFO: {city} is a city in {country}')
-        break
-else:
-    print(f'ERROR: {city} not found')
+city = "Minsk"
+
+country = list(filter(lambda x:city in countries[x], countries))
+
+print(country)
