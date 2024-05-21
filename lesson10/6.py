@@ -13,3 +13,20 @@
 # print(c10()) -> 11 
 # print(c10()) -> 12 
 # print(c10()) -> 13 
+
+def out_func(n):
+    def in_func():
+        nonlocal n
+        n += 1
+        return n
+    return in_func
+
+
+c1 = out_func(1)
+c10 = out_func(10)
+
+print(c1(), c10())
+print(c1(), c10())
+print(c1(), c10())
+print(c1(), c10())
+print(c1(), c10())

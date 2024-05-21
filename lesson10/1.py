@@ -15,23 +15,31 @@
 #     "kwargs_max_len": 7
 # }
 
-def dict_from_args(*args, **kwargs):
-    sum_args = 0
-    for i in args:
-        if isinstance(i, int):
-            sum_args = sum_args+i
-        else:
-            raise ValueError("Все позиционные аргументы должны быть целыми")
-    
-    kwargs_max_len = 0
-    for key, val in kwargs.items():
-        if isinstance(val, str):
-            for n in range(len(val)):
-                kwargs_max_len += 1
-                
-        else:
-            raise ValueError("Все аргументы - ключевые слова должны быть строками")
+def dict_from_args(*args:int, **kwargs:str):
+
+    # sum_args = 0
+    # for arg in args:
+    #     if isinstance(arg, int):
+    #         sum_args = sum_args+arg
+    #     else:
+    #         raise ValueError("Все позиционные аргументы должны быть целыми")
+   
+    # kwargs_max_len = 0
+    # for kwarg in kwargs.values():
+    #     if isinstance(kwarg, str):
+    #         kwargs_max_len = len(max(list(kwargs.values()), key=len))
+    #     else:
+    #         raise ValueError("Все аргументы - ключевые слова должны быть строками")
             
-        return {'args_sum':sum_args, 'kwargs_max_len':kwargs_max_len},
+    #     return{'args_sum':sum_args, 'kwargs_max_len':kwargs_max_len}
+
+    if not all(map(lambda arg: isinstance(arg, int), args)):
+        raise ValueError("Все позиционные аргументы должны быть целыми")
+    
+    if not all(map(lambda kwarg: isinstance(kwarg, str), kwargs.values())):
+        raise ValueError("Все аргументы - ключевые слова должны быть строками")
+    sum_args = sum(args)
+    kwargs_max_len = len(max(kwargs.values()))
+    return{'args_sum':sum_args, 'kwargs_max_len':kwargs_max_len}
         
-print(dict_from_args(5, 6, 12, 45, 6, 9, word0='jfdjjfjk', word1='jchjjhbghh', word2='jjkchjhbjhbghh', word3='jjk'))
+print(dict_from_args(5, 6, 12, 45, 6, 9, word0='jfdjfjk', word1='jchjjhbghh', word2='jjkchjbjhbghh', word3='jjk'))
