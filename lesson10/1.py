@@ -26,7 +26,7 @@ def dict_from_args(*args, **kwargs):
     kwargs_max_len = 0
     for key, val in kwargs.items():
         if isinstance(val, str):
-            for n in range(val):
+            for n in range(len(val)):
                 kwargs_max_len += 1
                 
         else:
