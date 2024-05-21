@@ -18,20 +18,20 @@
 def dict_from_args(*args, **kwargs):
     sum_args = 0
     for i in args:
-        if type(i)==int:
+        if isinstance(i, int):
             sum_args = sum_args+i
         else:
             raise ValueError("Все позиционные аргументы должны быть целыми")
     
     kwargs_max_len = 0
-    for n in kwargs:
-        if type(kwargs.keys)==str:
-           kwargs_max_len = len(n)
+    for key, val in kwargs.items():
+        if isinstance(val, str):
+            for n in range(val):
+                kwargs_max_len += 1
+                
         else:
             raise ValueError("Все аргументы - ключевые слова должны быть строками")
             
-           
-    return {'args_sum':sum_args, 'kwargs_max_len':kwargs_max_len}
-  
+        return {'args_sum':sum_args, 'kwargs_max_len':kwargs_max_len},
         
-print(dict_from_args(5, 6, 12, 45, 6, 9, word='jfnfjk', word1='jnjk', word2='jjkh', word3='jjk'))
+print(dict_from_args(5, 6, 12, 45, 6, 9, word0='jfdjjfjk', word1='jchjjhbghh', word2='jjkchjhbjhbghh', word3='jjk'))
