@@ -29,12 +29,19 @@ class Student:
         return f" surname:{self.surname}\n name:{self.name}\n group:{self.group}\n grads:{self.grads}"
 
     def __eq__(self, other) -> bool:
-        return self.average_grade()== other.average_grade()
-    
+        return self.average_grade() == other.average_grade()
     def __lt__(self, other) -> bool:
         return self.average_grade() < other.average_grade()
-    
-    def add_grade(self, arg:int):
+    def __ne__(self, other) -> bool:
+        return self.average_grade() != other.average_grade()
+    def __le__(self, other) -> bool:
+        return self.average_grade() <= other.average_grade()
+    def __gt__(self, other) -> bool:
+        return self.average_grade() > other.average_grade()
+    def __ge__(self, other) -> bool:
+        return self.average_grade() >= other.average_grade()
+       
+    def add_grade(self, arg:int):  
         if 0 <= arg <= 10:
             self.grads.append(arg)
         else:
@@ -53,7 +60,7 @@ students =[
     Student('Bukin','Dima', '№1', [8, 5, 7, 6, 4, 6])
 ]
 
-students[2].add_grade(9)
+students[2].add_grade(10)
 print(students[2].grads)
 
 for student in students:
@@ -63,7 +70,16 @@ for student in students:
 
 print(students[0])
 
-#print(sorted(students, key=lambda student: student.surname))
+print(students[1].__eq__(students[2]))
+print(students[1].__lt__(students[2]))
+print(students[1].__ne__(students[2]))
+print(students[1].__le__(students[2]))
+print(students[1].__gt__(students[2]))
+print(students[1].__ge__(students[2]))
 
-print(students[2].__eq__(students[1]))
+
+print(sorted(students, key=lambda student: student.surname))
+
+
+
 
