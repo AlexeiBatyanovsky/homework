@@ -31,6 +31,9 @@ class Student:
     def __eq__(self, other) -> bool:
         return self.average_grade()== other.average_grade()
     
+    def __lt__(self, other) -> bool:
+        return self.average_grade() < other.average_grade()
+    
     def add_grade(self, arg:int):
         if 0 <= arg <= 10:
             self.grads.append(arg)
@@ -60,4 +63,7 @@ for student in students:
 
 print(students[0])
 
-print(sorted(students, key=lambda student: student.surname))
+#print(sorted(students, key=lambda student: student.surname))
+
+print(students[2].__eq__(students[1]))
+
