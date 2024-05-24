@@ -40,5 +40,5 @@ phone3 = Phone('Xiaomi', '14',2024)
 
 print(phone3.receive_call('Petia'))
 print(phone2.get_info())
-print(phone1.__str__())
+print(phone1)
 

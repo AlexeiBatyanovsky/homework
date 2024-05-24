@@ -18,7 +18,6 @@
 
 # Вывести студентов, у которых средний балл больше 8
 
-
 class Student:
     def __init__(self,surname, name, group, grads:list) -> None:
         self.surname = surname
@@ -26,22 +25,39 @@ class Student:
         self.group = group
         self.grads = grads
     
-    # def __str__(self) -> str:
-    #     return f"surname:{self.surname}\nname:{self.name}\ngroup:{self.group}\ngrads:{self.grads}"
+    def __str__(self) -> str:
+        return f" surname:{self.surname}\n name:{self.name}\n group:{self.group}\n grads:{self.grads}"
+
+    def __eq__(self, other) -> bool:
+        return self.average_grade()== other.average_grade()
     
     def add_grade(self, arg:int):
-        self.grads.append(arg)
+        if 0 <= arg <= 10:
+            self.grads.append(arg)
+        else:
+            raise ValueError("input 0 <= arg <= 10")
         return(self.grads)
 
     def average_grade(self):
         return sum(self.grads) / len(self.grads)
     
-student1 = Student('Pupkin','Vasia', 'a', [8, 10, 7, 9, 10, 6])
-student2 = Student('lupkin','Petya', 'b', [8, 10, 10, 9, 10, 8])
-student3 = Student('Pushkin','Ivan', 'c', [8, 7, 7, 9, 7, 6])
-student4 = Student('Supkin','Anton', 'b', [8, 6, 7, 9, 6, 6])
-student5 = Student('Pukin','Dima', 'a', [8, 5, 7, 6, 4, 6])
 
-#print(student1.__str__())
-print(student2.average_grade())
-print(student3.add_grade(6))
+students =[
+    Student('Pupkin','Vasia', '№1', [8, 10, 7, 9, 10, 6]),
+    Student('Kupkin','Petya', '№2', [8, 10, 10, 9, 10, 8]),
+    Student('Pushkin','Ivan', '№3', [8, 7, 7, 9, 7, 6]),
+    Student('Supin','Anton', '№2', [8, 6, 7, 9, 6, 6]),
+    Student('Bukin','Dima', '№1', [8, 5, 7, 6, 4, 6])
+]
+
+students[2].add_grade(9)
+print(students[2].grads)
+
+for student in students:
+    if student.average_grade() > 8:
+        print(student.surname, float('{:.2f}'.format(student.average_grade())))
+              
+
+print(students[0])
+
+print(sorted(students, key=lambda student: student.surname))
