@@ -19,12 +19,12 @@
 
 
 class Phone:
-    def __init__(self, brand, model, issue_year) -> None:
+    def __init__(self, brand:str, model:str, issue_year:int) -> None:
         self.brand = brand
         self.model = model
         self.issue_year = issue_year
 
-    def receive_call(self, name) -> str:
+    def receive_call(self, name:str) -> str:
         return f'{self.brand}-{self.model} - Звонит {name}'
 
     def get_info(self) -> tuple:

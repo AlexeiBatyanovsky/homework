@@ -16,16 +16,48 @@
 
 # CURRENT_YEAR = date.today().year
 
+from datetime import date
+
+CURRENT_YEAR = date.today().year
+
 
 class BookCard:
     __author = str
     __title = str
     __year = int
 
-    def __init__(self, author, title, year) -> None:
+    def __init__(self, author:str, title:str, year:int) -> None:
         self.__author = author
         self.__title = title
         self.__year = year
 
+    def __eq__(self, other) -> bool:
+        return self.__year == other.__year
+    def __lt__(self, other) -> bool:
+        return self.__year < other.__year
+    def __ne__(self, other) -> bool:
+        return self.__year != other.__year
+    def __le__(self, other) -> bool:
+        return self.__year <= other.__year
+    def __gt__(self, other) -> bool:
+        return self.__year > other.__year
+    def __ge__(self, other) -> bool:
+        return self.__year >= other.__year
     
+
+
+books = [
+    BookCard('Лев Толстой','Война и мир', 1869 ),
+    BookCard('Маргарет Мит­челл', 'Унесён­ные ветром', 1936),
+    BookCard('Олдос Хаксли', 'Дивный новый мир', 1932),
+    BookCard('Уильям Шекспир', 'Король Лир', 1603),
+    BookCard('Мар­сель Пруст', 'В поис­ках поте­рян­но­го вре­мени', 1913)
+]
+
+# print(books[1].__eq__(books[2]))
+# print(books[1].__lt__(books[2]))
+# print(books[1].__ne__(books[2]))
+# print(books[1].__le__(books[2]))
+# print(books[1].__gt__(books[2]))
+# print(books[1].__ge__(books[2]))
     
