@@ -20,8 +20,13 @@ class BookCard:
     __year: int = 0
     author: str
     
+    def __check_year(year):
+        return 0 < year <= CURRENT_YEAR
+        
     def __init__(self, author, year) -> None:
         self.author = author
+        if not self.__check_year(year):
+            raise ValueError(ValueError)
         self.__year = year
         
     @property #getter
