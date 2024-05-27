@@ -34,3 +34,79 @@
                 
 # Создать несколько воинов используя разные классы, добавить их на арену и запустить битву. 
 # Выжить должен только один.
+
+class Hero:
+    """     
+    Класс для создания героя 
+    
+     ...
+
+    Attributes
+    ----------
+    name : str
+        Имя героя
+    health : int
+        здоровье героя 
+    age : int
+        age of the person
+
+    Methods
+    -------
+    print_info():
+        Печатает в консоль информацию о герое
+    
+    kick():
+        производит один удар - высчитывает и уменьшает броню и здоровье 
+    
+    """
+
+    def __init__(self, name, health, armor, strong) -> None:
+        self.name = name
+        self.health = health
+        self.armor = armor
+        self.strong = strong
+    
+    def _get_info(self):
+        print(
+              f"Имя {self.name}\n" \
+              f"Здоровье - {self.health}\n" \
+              f"Защита {self.armor}"
+        )
+        
+    def print_info(self):
+        
+        print(self._get_info() + '\n')
+    
+    
+    def special_attack(self, points):
+        if points > 0:
+
+    def attack(self, other):
+        other.armor -= self.strong
+        if other.armor < 0:
+            other.health += other.armor
+            other.armor = 0
+
+
+
+class Mage(Hero):
+    def __init__(self, name, health, armor, strong, mana, manashield) -> None:
+        super().__init__(name, health, armor, strong)
+        self.mana = mana
+        self.manashield = manashield
+class Rogue(Hero):
+    def __init__(self, name, health, armor, strong, energy, evasion) -> None:
+        super().__init__(name, health, armor, strong)
+        self.energy = energy
+        self.evasion = evasion
+
+class Warrior(Hero):
+    def __init__(self, name, health, armor, strong, rage, blocking) -> None:
+        super().__init__(name, health, armor, strong)
+        self.rage = rage
+        self.blocking = blocking
+
+class Arena():
+
+    def __init__(self, wariors) -> None:
+        pass

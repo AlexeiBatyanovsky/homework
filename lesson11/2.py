@@ -62,18 +62,19 @@ students =[
     Student('Bulkin','Dima', '№1', [8, 5, 7, 6, 4, 6])
 ]
 
-# print(students[1].__eq__(students[2]))
-# print(students[1].__lt__(students[2]))
-# print(students[1].__ne__(students[2]))
-# print(students[1].__le__(students[2]))
-# print(students[1].__gt__(students[2]))
-# print(students[1].__ge__(students[2]))
+# print(students[1]==(students[2]))
+# print(students[1]!=(students[2]))
+# print(students[1]>=(students[2]))
+# print(students[1]>(students[2]))
+# print(students[1]<(students[2]))
+# print(students[1]<=(students[2]))
 
 # students[0].add_grade(9)
 # print(students[0].grads)
 
-print(sorted(students, key=lambda student: student.surname, reverse = True))
+print(sorted(students, key=lambda student: student.average_grade(), reverse = True)) # сортировка по среднему баллу
 
 for student in students:
     if student.average_grade() > 8:
         print(student.surname, float('{:.2f}'.format(student.average_grade())))
+
