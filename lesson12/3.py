@@ -105,8 +105,3 @@ class Warrior(Hero):
         super().__init__(name, health, armor, strong)
         self.rage = rage
         self.blocking = blocking
-
-class Arena():
-
-    def __init__(self, wariors) -> None:
-        pass

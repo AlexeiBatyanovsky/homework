@@ -17,54 +17,77 @@ CURRENT_YEAR = date.today().year
 
 class BookCard:
    
-    __year: int = 0
-    author: str
-    
+    __year: int
+    __author: str 
+    __title: str
+        
     def __check_year(self, year):
         return 0 < year <= CURRENT_YEAR
+    
+    def __check_author(self, author):
+        return author == str
+    
+    def __check_title(self, title):
+        return title == str
+    
+    def __init__(self, author,title, year) -> None:
         
-    def __init__(self, author, year) -> None:
-        self.author = author
+        if self.__check_author(author):
+            raise ValueError('Enter correct author')
+        self.__author = author
+        if self.__check_title(title):
+            raise ValueError('Enter correct title')
+        self.__title = title
         if not self.__check_year(year):
-            raise ValueError(ValueError)
+            raise ValueError('Enter correct date')
         self.__year = year
         
-    @property #getter
+    @property
     def year(self):
         return self.__year
     
     @year.setter
-    def year(self, val):
-        if self.__check_year(val):
-            self.__year = val
+    def year(self, val1):
+        if self.__check_year(val1):
+            self.__year = val1
         else:
-            raise ValueError('ValueError') 
+            raise ValueError
+    @property
+    def author(self):
+        return self.__author
+    
+    @author.setter
+    def author(self, val2):
+        if self.__check_author(val2):
+            self.__year = val2
+        else:
+            raise ValueError
+    @property
+    def title(self):
+        return self.__title
+    
+    @title.setter
+    def title(self, val3):
+        if self.__check_title(val3):
+            self.__year = val3
+        else:
+            raise ValueError
 
-book = BookCard('xdsdf', 200)
-print(book.year)
-book.year = 10
-print(book.year)
-book.__year = 10
-print(book.year)
+    def __repr__(self):
+        return f" Author:{self.author}\n Title:{self.__title}\n Year:{self.__year}\n"
 
-
-
-            
-#     def __repr__(self):
-#         return f" Author:{self.author},Title:{self.__title},Year:{self.__year}"
-
-#     def __eq__(self, other) -> bool:
-#         return self.__year == other.__year
-#     def __lt__(self, other) -> bool:
-#         return self.__year < other.__year
-#     def __ne__(self, other) -> bool:
-#         return self.__year != other.__year
-#     def __le__(self, other) -> bool:
-#         return self.__year <= other.__year
-#     def __gt__(self, other) -> bool:
-#         return self.__year > other.__year
-#     def __ge__(self, other) -> bool:
-#         return self.__year >= other.__year
+    def __eq__(self, other) -> bool:
+        return self.__year == other.__year
+    def __lt__(self, other) -> bool:
+        return self.__year < other.__year
+    def __ne__(self, other) -> bool:
+        return self.__year != other.__year
+    def __le__(self, other) -> bool:
+        return self.__year <= other.__year
+    def __gt__(self, other) -> bool:
+        return self.__year > other.__year
+    def __ge__(self, other) -> bool:
+        return self.__year >= other.__year
     
 # books = [
 #     BookCard('Лев Толстой','Война и мир', 1869 ),
@@ -72,4 +95,6 @@ print(book.year)
 #     BookCard('Олдос Хаксли', 'Дивный новый мир', 1932),
 #     BookCard('Уильям Шекспир', 'Король Лир', 1603),
 #     BookCard('Мар­сель Пруст', 'В поис­ках поте­рян­но­го вре­мени', 1913)
-# ]
+
+book = BookCard('Лев Толстой', 'Война и мир', 5)
+print(book)
