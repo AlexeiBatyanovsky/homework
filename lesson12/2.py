@@ -20,7 +20,7 @@ class BookCard:
     __year: int = 0
     author: str
     
-    def __check_year(year):
+    def __check_year(self, year):
         return 0 < year <= CURRENT_YEAR
         
     def __init__(self, author, year) -> None:
