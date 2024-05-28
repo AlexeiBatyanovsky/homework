@@ -22,13 +22,13 @@ class BookCard:
     __title: str
         
     def __check_year(self, year):
-        return 0 < year <= CURRENT_YEAR
+        return isinstance(year, int) and 0 < year <= CURRENT_YEAR
     
     def __check_author(self, author):
-        return author == str
+        return not isinstance(author, str)
     
     def __check_title(self, title):
-        return title == str
+        return not isinstance(title, str)
     
     def __init__(self, author,title, year) -> None:
         
@@ -95,6 +95,6 @@ class BookCard:
 #     BookCard('Олдос Хаксли', 'Дивный новый мир', 1932),
 #     BookCard('Уильям Шекспир', 'Король Лир', 1603),
 #     BookCard('Мар­сель Пруст', 'В поис­ках поте­рян­но­го вре­мени', 1913)
+# ]
 
-book = BookCard('Лев Толстой', 'Война и мир', 5)
-print(book)
+book = BookCard('Лев Толстой', 'Война и мир', 1869)

@@ -78,9 +78,6 @@ class Hero:
         print(self._get_info() + '\n')
     
     
-    def special_attack(self, points):
-        if points > 0:
-
     def attack(self, other):
         other.armor -= self.strong
         if other.armor < 0:
