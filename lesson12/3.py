@@ -84,13 +84,12 @@ class Hero:
             other.health += other.armor
             other.armor = 0
 
-
-
 class Mage(Hero):
     def __init__(self, name, health, armor, strong, mana, manashield) -> None:
         super().__init__(name, health, armor, strong)
         self.mana = mana
         self.manashield = manashield
+
 class Rogue(Hero):
     def __init__(self, name, health, armor, strong, energy, evasion) -> None:
         super().__init__(name, health, armor, strong)
@@ -102,3 +101,19 @@ class Warrior(Hero):
         super().__init__(name, health, armor, strong)
         self.rage = rage
         self.blocking = blocking
+
+class Arena():
+
+    warriors = []
+
+    def __init__(self, warriors:list) -> None:
+        self.warriors = warriors
+
+    def add_warrior(self, warrior):
+        self.warrior = warrior
+        self.warriors.append(warrior)
+
+
+w1 = Mage('dsfsdf', 500, 0, 0, 300, 10)
+Arena.add_warrior(w1)
+print(Arena.warriors)
