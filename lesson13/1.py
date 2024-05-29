@@ -80,16 +80,16 @@ class User():
         return self.__password
     
     @password.setter
-    def login(self, val):
+    def password(self, val):
         if self.__checkpassword(val):
             self.__password = val
         else:
             raise ValueError('Используйте только латинские буквы, цифры и черту подчеркивания, не менее 6 символов')
 
            
-user1 = User('Вася','sdadasdf',45646)
-user2 = User('Ёж', 'sKda_das0df',45646)
+user1 = User('Вася','sdadasdf','sKda_das0df')
+user2 = User('Ёж', 'sKda_das0df','sKda_das0df')
 
-print(user1, user2)
+print(user2)
 
     
