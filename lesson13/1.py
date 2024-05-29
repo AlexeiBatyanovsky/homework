@@ -73,7 +73,7 @@ class User():
             raise ValueError('Используйте только латинские буквы, цифры и черту подчеркивания, не менее 6 символов')
     
     def __checkpassword(self, password):
-        return re.fullmatch(r'^[a-zA-Z0-9_-]{6,30}$', password)
+        return re.fullmatch(r'^[a-zA-Z0-9_-]{1,6}$', password)
     
     @property
     def password(self):
@@ -84,7 +84,7 @@ class User():
         if self.__checkpassword(val):
             self.__password = val
         else:
-            raise ValueError('Используйте только латинские буквы, цифры и черту подчеркивания, не менее 6 символов')
+            raise ValueError('Используйте только латинские буквы, цифры, не более 6 символов')
 
            
 user1 = User('Вася','sdadasdf','sKda_das0df')
