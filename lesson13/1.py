@@ -36,16 +36,17 @@ import re
 class User():
 
 
-    def __init__(self, name:str, login:str, password = '') -> None:
+    def __init__(self, name:str, login:str, password = None, is_blocked = False) -> None:
         self.name = name
         self.login = login
         self.password = password
+        self.is_blocked = is_blocked
 
     def __str__(self) -> str:
-        return f"name:{self.name}, login:{self.login}, password:{self.password}"
+        return f"name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked}"
     
     def __checkname(self, name):
-        return re.fullmatch(r'^[а-яА-ЯёЁ]{1,30}$', name)
+        return re.match(r'^[а-яА-ЯёЁ]{1,}$', name)
     
     @property
     def name(self):
@@ -59,7 +60,7 @@ class User():
             raise ValueError('Используйте только буквы русского алфавита')
         
     def __checklogin(self, login):
-        return re.fullmatch(r'^[a-zA-Z0-9_-]{6,30}$', login)
+        return re.match(r'^[a-zA-Z0-9_]{6,}$', login)
     
     @property
     def login(self):
@@ -73,7 +74,7 @@ class User():
             raise ValueError('Используйте только латинские буквы, цифры и черту подчеркивания, не менее 6 символов')
     
     def __checkpassword(self, password):
-        return re.fullmatch(r'^[a-zA-Z0-9_-]{1,6}$', password)
+        return re.match(r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$', password)
     
     @property
     def password(self):
@@ -81,15 +82,22 @@ class User():
     
     @password.setter
     def password(self, val):
-        if self.__checkpassword(val):
-            self.__password = val
+        if val == None:
+            self.__password = 'aSDFKRj223e'
         else:
-            raise ValueError('Используйте только латинские буквы, цифры, не более 6 символов')
+            if self.__checkpassword(val):
+                self.__password = val
+            else:
+                raise ValueError('Используйте только латинские буквы, цифры, не более 6 символов')
+    
+    # def bloc(self, is_blocked):
+
 
            
-user1 = User('Вася','sdadasdf','sKda_das0df')
-user2 = User('Ёж', 'sKda_das0df','sKda_das0df')
+user1 = User('Вася','sdadasdf')
+user2 = User('Ёж', 'sKda_da51s0df')
 
+print(user1)
 print(user2)
 
     

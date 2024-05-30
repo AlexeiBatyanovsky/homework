@@ -35,8 +35,8 @@ class BookCard:
         if self.__check_author(author):
             raise ValueError('Enter correct author')
         self.__author = author
-        # if self.__check_title(title):
-        #     raise ValueError('Enter correct title')
+        if self.__check_title(title):
+            raise ValueError('Enter correct title')
         self.__title = title
         if not self.__check_year(year):
             raise ValueError('Enter correct date')
@@ -97,4 +97,4 @@ class BookCard:
 #     BookCard('Мар­сель Пруст', 'В поис­ках поте­рян­но­го вре­мени', 1913)
 # ]
 
-book = BookCard('Лев Толстой', 5, 1869)
+book = BookCard('Лев Толстой', 'Война и мир', 1869)
