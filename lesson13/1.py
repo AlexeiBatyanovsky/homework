@@ -32,6 +32,7 @@
 # Валидацию данных сделать через регулярные выражения
 
 import re
+import random
 from datetime import date, timedelta
 
 class User():
@@ -88,7 +89,7 @@ class User():
     @password.setter
     def password(self, val):
         if val == None:
-            self.__password = 'aSDFKRj223e'
+            self.__password = gen_pass(val)
         else:
             if self.__checkpassword(val):
                 self.__password = val
@@ -98,7 +99,14 @@ class User():
     def bloc(self, is_blocked):
         self.is_blocked = is_blocked
 
+def gen_pass(password):
 
+    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    length = int(random.uniform(6, 20))
+    password =''
+    for i in range(length):
+        password += random.choice(chars)
+    return password  
        
 user1 = User('Василий','Vasilii', 'AhRgnlg8')
 user2 = User('Анатолий', 'Anatolii')
