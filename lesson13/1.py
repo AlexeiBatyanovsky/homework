@@ -35,22 +35,17 @@ import re
 from datetime import date, timedelta
 
 class User():
-
-    date = date.today()
-
-    subscription_date = date
-
-    def __init__(self, name:str, login:str, password = None, is_blocked = False, subscription_date = None, subscription_mode = None) -> None:
+    
+    def __init__(self, name:str, login:str, password = None, is_blocked = False, date = date.today()) -> None:
         self.name = name
         self.login = login
         self.password = password
         self.is_blocked = is_blocked
-        self.subscription_date = self.date
-        self.subscription_mode = 'free'
-
+        self.date = date.today()
+        
     def __str__(self) -> str:
         return f'name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked},'\
-               f' subscription_date:{self.subscription_date}, subscription_mode:{self.subscription_mode}'
+               f' subscription_date:{self.date}'
     
     def get_info(self):
         print(f'Пользователь {self.name}, login:{self.login}, ')
