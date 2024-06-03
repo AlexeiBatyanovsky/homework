@@ -45,11 +45,11 @@ class User():
         self.date = date.today()
         
     def __str__(self) -> str:
-        return f'name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked},'\
-               f' subscription_date:{self.date}'
-    
+        return f'name:{self.name}, login:{self.login}, password:{self.password}'
+                   
     def get_info(self):
-        print(f'Пользователь {self.name}, login:{self.login}, ')
+        print(f'name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked},'\
+               f' subscription_date:{self.date}')
     
     def __checkname(self, name):
         return re.match(r'^[а-яА-ЯёЁ]{1,}$', name)

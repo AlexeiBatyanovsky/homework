@@ -32,28 +32,27 @@
 # Валидацию данных сделать через регулярные выражения
 
 import re
+import random
 from datetime import date, timedelta
 
 class User():
 
-    date = date.today()
-
-    subscription_date = date
-
-    def __init__(self, name:str, login:str, password = None, is_blocked = False, subscription_date = None, subscription_mode = None) -> None:
+    subscription_mode = 'free'
+    
+    def __init__(self, name:str, login:str, password = None, is_blocked = False, date = date.today(), services = []) -> None:
         self.name = name
         self.login = login
         self.password = password
         self.is_blocked = is_blocked
-        self.subscription_date = self.date
-        self.subscription_mode = 'free'
-
+        self.date = date.today()
+        self.services = services
+        
     def __str__(self) -> str:
-        return f'name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked},'\
-               f' subscription_date:{self.subscription_date}, subscription_mode:{self.subscription_mode}'
-    
+        return f'name:{self.name}, login:{self.login}, password:{self.password}'
+                   
     def get_info(self):
-        print(f'Пользователь {self.name}, login:{self.login}, ')
+        print(f'name:{self.name}, login:{self.login}, password:{self.password}, blocked:{self.is_blocked},'\
+               f' subscription_date:{self.date}')
     
     def __checkname(self, name):
         return re.match(r'^[а-яА-ЯёЁ]{1,}$', name)
@@ -93,7 +92,7 @@ class User():
     @password.setter
     def password(self, val):
         if val == None:
-            self.__password = 'aSDFKRj223e'
+            self.__password = gen_pass(val)
         else:
             if self.__checkpassword(val):
                 self.__password = val
@@ -103,16 +102,17 @@ class User():
     def bloc(self, is_blocked):
         self.is_blocked = is_blocked
 
+def gen_pass(password):
 
-       
-user1 = User('Василий','Vasilii', 'AhRgnlg8')
-user2 = User('Анатолий', 'Anatolii')
-user3 = User('Александр', 'Aleksandr')
+    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    length = int(random.uniform(6, 20))
+    password =''
+    for i in range(length):
+        password += random.choice(chars)
+    return password  
 
-user1.bloc(True)
-user1.get_info()
-print(f"{user1}\n{user2}\n{user3}")
-
-current_date = date.today()
-
-    
+Users = [
+    User('Василий','Vasilii', 'AhRgnlg8'),
+    User('Василий','Vasilii', 'AhRgnlg8'),
+    User('Александр', 'Aleksandr') 
+]      
