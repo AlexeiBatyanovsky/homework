@@ -41,21 +41,21 @@ class Usluga(Base):
     __tablename__ = 'usluga'
     
     id = Column(Integer(), primary_key=True)
-    question = Column(String(250), nullable=False)
-    answer = Column(String(100), nullable=False)
-    wrong1 = Column(String(100), nullable=False)
+    name = Column(String(250), nullable=False)
+    status = Column(String(100), nullable=False)
+    price = Column(String(100), nullable=False)
     tarif = relationship('Tarif', 
                            secondary=tarif_usluga,
                            backref = 'usluga')
     
-    def __init__(self, question:str, answer, wrong1) -> None:
+    def __init__(self, name:str, status, price) -> None:
         super().__init__()
-        self.question = question
-        self.answer = answer  
-        self.wrong1 = wrong1
+        self.name = name
+        self.status = status  
+        self.price = price
        
     def __repr__(self):
-        return f'{self.question}'
+        return f'{self.name}'
     
     
 def db_add_new_data(engine, db):
