@@ -29,7 +29,6 @@
 import sqlite3
 # from sqlite3 import Error
 from tkinter import *
-from tkinter import ttk
 from tkinter import messagebox
 from User import User
 
@@ -88,12 +87,12 @@ Table1 ='''
 cur.execute(Table1)
 
 with connection:
-    services = [('1','sport', 0, 0, 30),
-               ('2','music', 1, 200, 60),
-               ('3','movie', 1, 250, 30),
-               ('4','relax', 1, 150, 90)]
+    services = [('sport', 0, 0, 30),
+               ('music', 1, 200, 60),
+               ('movie', 1, 250, 30),
+               ('relax', 1, 150, 90)]
     
-    cur.executemany("INSERT INTO Services VALUES(?,?,?,?,?)",services)
+    cur.executemany("INSERT INTO Services VALUES(?,?,?,?)",services)
 
 Table2 ='''
             CREATE TABLE IF NOT EXISTS Users (
@@ -104,10 +103,10 @@ Table2 ='''
         '''
 cur.execute(Table2)
 with connection:
-    users = [('1','Viktor', 'Vic', 'A5ffds'),
-            ('2','Anton', 'Antony', 'ds54Ertsf'),
-            ('3','Alexei', 'Alex', 'sfS56sd'),
-            ('4','Dmitrii', 'dimon', 'sa4Dvf9')]
+    users = [('Viktor', 'Vic', 'A5ffds'),
+            ('Anton', 'Antony', 'ds54Ertsf'),
+            ('Alexei', 'Alex', 'sfS56sd'),
+            ('Dmitrii', 'dimon', 'sa4Dvf9')]
     cur.executemany("INSERT INTO Users VALUES(?,?,?,?)",users)
 
 select_users = "SELECT * from users"
