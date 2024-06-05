@@ -84,8 +84,8 @@ def db_add_new_data(engine, db):
     service_list = [
         Service('Internet', 'standart', '5'),
         Service('Internet unlim+', 'premium', '15'),
-        Service('TV 30 ch', 'standart', '5'),
-        Service('TV 200+ ch', 'premium', '10'),
+        Service('TV 30', 'standart', '5'),
+        Service('TV 200+', 'premium', '10'),
         Service('CCTV', 'premium+', '25'),              
     ]
 
