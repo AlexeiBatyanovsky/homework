@@ -1,10 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-
-# from sqlalchemy.orm import sessionmaker
-
 from models2 import Tarif, Usluga, db_add_new_data
-# from models import * 
+
 
 sqlite_database = "sqlite:///database.db"
 engine = create_engine(sqlite_database, echo=False)

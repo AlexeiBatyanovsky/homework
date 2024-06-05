@@ -7,7 +7,6 @@ from sqlalchemy.sql import func
 class Base(DeclarativeBase):
     ...
     
-    
 class User(Base):
 
     __tablename__ = 'user'
@@ -27,9 +26,7 @@ class Tarif(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100))
     user_id = Column(Integer, ForeignKey('user.id'))
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())   
-            
+                
     def __repr__(self):
         return f'{self.name}'
 
