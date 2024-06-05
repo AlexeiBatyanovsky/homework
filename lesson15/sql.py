@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from models import Tarif, Usluga, db_add_new_data
+from models import Tarif, Service, db_add_new_data
 
 
 sqlite_database = "sqlite:///database.db"
@@ -17,9 +17,9 @@ with Session(autoflush=False, bind=engine) as db:
     for q in qs:
         print(2, q)
     
-    for usluga in qs[1].usluga:
-        print(3, usluga)
-    qs = db.query(Usluga).all()
+    for service in qs[1].service:
+        print(3, service)
+    qs = db.query(Service).all()
     print(qs)
     
     # q = db.query(Quiz).get(2)

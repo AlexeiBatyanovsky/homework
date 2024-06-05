@@ -14,10 +14,19 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(25)) 
     login = Column(String(25))
-    bloked = Column(String(25))   
+    blocked = Column(String(25))   
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())   
     tarifs = relationship('Tarif', backref='user')
+    
+    def __init__(self, name:str, login:str, blocked = False) -> None:
+        super().__init__()
+        self.name = name
+        self.login = login  
+        self.blocked = blocked
+    
+    def __repr__(self):
+        return f'{self.name}, {self.login}'
     
 class Tarif(Base):  
 
@@ -31,14 +40,14 @@ class Tarif(Base):
         return f'{self.name}'
 
 tarif_usluga = Table(
-            'tarif_usluga',
+            'tarif_service',
             Base.metadata,
             Column('tarif_id', Integer, ForeignKey('tarif.id')),
-            Column('usluga_id', Integer, ForeignKey('usluga.id')),
+            Column('service_id', Integer, ForeignKey('service.id')),
             )
 
-class Usluga(Base):    
-    __tablename__ = 'usluga'
+class Service(Base):    
+    __tablename__ = 'service'
     
     id = Column(Integer(), primary_key=True)
     name = Column(String(250), nullable=False)
@@ -46,7 +55,7 @@ class Usluga(Base):
     price = Column(String(100), nullable=False)
     tarif = relationship('Tarif', 
                            secondary=tarif_usluga,
-                           backref = 'usluga')
+                           backref = 'service')
     
     def __init__(self, name:str, status, price) -> None:
         super().__init__()
@@ -63,31 +72,31 @@ def db_add_new_data(engine, db):
     Base.metadata.create_all(bind=engine)
 
     users = [
-            User(name='Вася'), 
-            User(name='User2'),
-            User(name='User3')
+            User('Вася','user1', True), 
+            User('Петя','user2', False),
+            User('Антон','user3')
     ]
     
     
     tarif1 = Tarif(name='Тариф N1', user=users[0])
     tarif2 = Tarif(name='Тариф N2', user=users[1])
     
-    usluga_list = [
-        Usluga('Internet', 'standart', '5'),
-        Usluga('Internet unlim+', 'premium', '15'),
-        Usluga('TV 30 ch', 'standart', '5'),
-        Usluga('TV 200+ ch', 'premium', '10'),
-        Usluga('CCTV', 'premium+', '25'),              
+    service_list = [
+        Service('Internet', 'standart', '5'),
+        Service('Internet unlim+', 'premium', '15'),
+        Service('TV 30 ch', 'standart', '5'),
+        Service('TV 200+ ch', 'premium', '10'),
+        Service('CCTV', 'premium+', '25'),              
     ]
 
-    tarif1.usluga.append(usluga_list[0])
-    tarif1.usluga.append(usluga_list[2])
-    tarif1.usluga.append(usluga_list[3])
+    tarif1.service.append(service_list[0])
+    tarif1.service.append(service_list[2])
+    tarif1.service.append(service_list[3])
    
 
-    tarif2.usluga.append(usluga_list[1])
-    tarif2.usluga.append(usluga_list[2])
-    tarif2.usluga.append(usluga_list[4])  
+    tarif2.service.append(service_list[1])
+    tarif2.service.append(service_list[2])
+    tarif2.service.append(service_list[4])  
     
     db.add_all(users) 
     
