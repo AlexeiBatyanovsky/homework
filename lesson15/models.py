@@ -17,7 +17,7 @@ class User(Base):
     blocked = Column(String(25))   
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())   
-    tarifs = relationship('Tarif', backref='user')
+    packages = relationship('Package', backref='user')
     
     def __init__(self, name:str, login:str, blocked = False) -> None:
         super().__init__()
@@ -28,9 +28,9 @@ class User(Base):
     def __repr__(self):
         return f'{self.name}, {self.login}'
     
-class Tarif(Base):  
+class Package(Base):  
 
-    __tablename__ = 'tarif'
+    __tablename__ = 'package'
     
     id = Column(Integer, primary_key=True)
     name = Column(String(100))
@@ -39,10 +39,10 @@ class Tarif(Base):
     def __repr__(self):
         return f'{self.name}'
 
-tarif_usluga = Table(
-            'tarif_service',
+package_service = Table(
+            'package_service',
             Base.metadata,
-            Column('tarif_id', Integer, ForeignKey('tarif.id')),
+            Column('package_id', Integer, ForeignKey('package.id')),
             Column('service_id', Integer, ForeignKey('service.id')),
             )
 
@@ -53,8 +53,8 @@ class Service(Base):
     name = Column(String(250), nullable=False)
     status = Column(String(100), nullable=False)
     price = Column(String(100), nullable=False)
-    tarif = relationship('Tarif', 
-                           secondary=tarif_usluga,
+    tarif = relationship('Package', 
+                           secondary=package_service,
                            backref = 'service')
     
     def __init__(self, name:str, status, price) -> None:
@@ -78,8 +78,8 @@ def db_add_new_data(engine, db):
     ]
     
     
-    tarif1 = Tarif(name='Тариф N1', user=users[0])
-    tarif2 = Tarif(name='Тариф N2', user=users[1])
+    package1 = Package(name='Package of services N1', user=users[0])
+    package2 = Package(name='Package of services N2', user=users[1])
     
     service_list = [
         Service('Internet', 'standart', '5'),
@@ -89,14 +89,14 @@ def db_add_new_data(engine, db):
         Service('CCTV', 'premium+', '25'),              
     ]
 
-    tarif1.service.append(service_list[0])
-    tarif1.service.append(service_list[2])
-    tarif1.service.append(service_list[3])
+    package1.service.append(service_list[0])
+    package1.service.append(service_list[2])
+    package1.service.append(service_list[3])
    
 
-    tarif2.service.append(service_list[1])
-    tarif2.service.append(service_list[2])
-    tarif2.service.append(service_list[4])  
+    package2.service.append(service_list[1])
+    package2.service.append(service_list[2])
+    package2.service.append(service_list[4])  
     
     db.add_all(users) 
     
