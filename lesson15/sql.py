@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from lesson15.models import Tarif, Usluga, db_add_new_data
+from models import Tarif, Usluga, db_add_new_data
 
 
 sqlite_database = "sqlite:///database.db"
