@@ -11,12 +11,7 @@ with Session(autoflush=False, bind=engine) as db:
 
     db_query = db.query(Package).all()
     print(db_query)
-    
-    for n in db_query:
-        print(2, n)
-    
-    for service in db_query[1].service:
-        print(3, service)
-    qs = db.query(Service).all()
-    print(qs)
+   
+    db_query2 = db.query(Service).all()
+    print(db_query2)
     
